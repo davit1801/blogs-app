@@ -31,12 +31,8 @@ const Header: React.FC = () => {
             <Button asChild className="bg-[#3d61ff] hover:bg-[#3d61ffe5]">
               <Link to={'/login'}>{t('header.login')}</Link>
             </Button>
-            <button>
-              <ModeToggle />
-            </button>
-            <button>
-              <ChangeLang />
-            </button>
+            <ModeToggle />
+            <ChangeLang />
           </div>
         </div>
       </Container>

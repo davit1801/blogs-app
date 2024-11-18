@@ -8,9 +8,20 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import i18next from 'i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ChangeLang: React.FC = () => {
-  const handleChangeLanguage = (lang: string) => i18next.changeLanguage(lang);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleChangeLanguage = (lang: string) => {
+    i18next.changeLanguage(lang);
+
+    const pathParts = location.pathname.split('/');
+    pathParts[1] = lang;
+    const newPath = pathParts.join('/');
+    navigate(newPath, { replace: true });
+  };
 
   return (
     <DropdownMenu>

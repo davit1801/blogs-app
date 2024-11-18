@@ -1,29 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '@/components/layout/Layout';
 import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Loading from '@/components/Loading';
+import i18next from 'i18next';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
+const defaultLang = 'ka';
+
 const RoutesComponent: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const pathParts = location.pathname.split('/');
+    const lang = pathParts[1] || 'ka';
+    if (i18next.language !== lang) {
+      i18next.changeLanguage(lang);
+    }
+  }, [location.pathname]);
+
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route
-          index
-          element={
-            <Suspense fallback={<Loading />}>
-              <HomePage />
-            </Suspense>
-          }
-        />
+      <Route path=":lang">
+        <Route element={<Layout />}>
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loading />}>
+                <HomePage />
+              </Suspense>
+            }
+          />
+        </Route>
       </Route>
       <Route
-        path="login"
+        path="/login"
         element={
           <Suspense fallback={<Loading />}>
             <LoginPage />
@@ -31,14 +46,13 @@ const RoutesComponent: React.FC = () => {
         }
       />
       <Route
-        path="register"
+        path="/register"
         element={
           <Suspense fallback={<Loading />}>
             <RegisterPage />
           </Suspense>
         }
       />
-
       <Route
         path="*"
         element={
@@ -47,6 +61,7 @@ const RoutesComponent: React.FC = () => {
           </Suspense>
         }
       />
+      <Route path="/" element={<Navigate to={`/${defaultLang}`} />} />
     </Routes>
   );
 };
