@@ -4,14 +4,12 @@ import { Link, NavLink } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/blog-logo.png';
 import { ModeToggle } from '@/components/mode-toggle';
-
-const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Write', path: '' },
-  { name: 'About', path: '' },
-];
+import { useTranslation } from 'react-i18next';
+import ChangeLang from '@/components/ChangeLang';
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <header className="border-b border-solid border-b-[#e5e7eb]">
       <Container>
@@ -21,20 +19,23 @@ const Header: React.FC = () => {
           </Link>
           <nav>
             <ul className="flex gap-4">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <NavLink to={item.path}>{item.name}</NavLink>
-                </li>
-              ))}
+              <li className="flex gap-5">
+                <NavLink to="/">{t('header.navItems.home')}</NavLink>
+                <NavLink to="">{t('header.navItems.write')}</NavLink>
+                <NavLink to="">{t('header.navItems.about')}</NavLink>
+              </li>
             </ul>
           </nav>
 
           <div className="flex gap-3">
             <Button asChild className="bg-[#3d61ff] hover:bg-[#3d61ffe5]">
-              <Link to={'/login'}>Sign in</Link>
+              <Link to={'/login'}>{t('header.login')}</Link>
             </Button>
             <button>
               <ModeToggle />
+            </button>
+            <button>
+              <ChangeLang />
             </button>
           </div>
         </div>
