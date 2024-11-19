@@ -27,19 +27,6 @@ const postsData = [
   },
   {
     id: 3,
-    postDate: '2024-11-03',
-    postTitle: 'Mastering the Art of Italian Cooking',
-    authorFullName: 'Emily Johnson',
-    category: 'Food',
-    description:
-      'A guide to creating authentic Italian dishes in your own kitchen.',
-    authorImg:
-      'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=200&width=400',
-    postImg:
-      'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
-  },
-  {
-    id: 4,
     postDate: '2024-11-04',
     postTitle: 'Top 10 Travel Destinations for 2024',
     authorFullName: 'Michael Lee',
@@ -51,20 +38,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 5,
-    postDate: '2024-11-05',
-    postTitle: 'Staying Fit in the Modern Age',
-    authorFullName: 'Chris Brown',
-    category: 'Health',
-    description:
-      'Tips and strategies for maintaining a healthy lifestyle despite a busy schedule.',
-    authorImg:
-      'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=200&width=400',
-    postImg:
-      'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
-  },
-  {
-    id: 6,
+    id: 4,
     postDate: '2024-11-06',
     postTitle: 'The Evolution of Mobile Technology',
     authorFullName: 'Sarah Parker',
@@ -77,7 +51,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 7,
+    id: 5,
     postDate: '2024-11-07',
     postTitle: 'Plant-Based Diet: Pros and Cons',
     authorFullName: 'Alice Davis',
@@ -90,7 +64,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 8,
+    id: 6,
     postDate: '2024-11-08',
     postTitle: 'Hidden Gems of Southeast Asia',
     authorFullName: 'David Wilson',
@@ -103,20 +77,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 9,
-    postDate: '2024-11-09',
-    postTitle: 'The Power of Mindfulness',
-    authorFullName: 'Sophia Martinez',
-    category: 'Health',
-    description:
-      'How mindfulness practices can improve mental and physical well-being.',
-    authorImg:
-      'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=200&width=400',
-    postImg:
-      'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
-  },
-  {
-    id: 10,
+    id: 7,
     postDate: '2024-11-10',
     postTitle: 'Sustainable Fashion: A New Era',
     authorFullName: 'Olivia White',
@@ -135,8 +96,8 @@ export const postsCategory = [
   'Technology',
   'Health',
   'Travel',
-  'Food',
   'Finance',
+  'Lifestyle',
 ];
 
 export default postsData;

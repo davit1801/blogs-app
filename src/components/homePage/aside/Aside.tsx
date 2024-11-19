@@ -14,7 +14,7 @@ const Aside: React.FC = () => {
             return (
               <Badge
                 key={category}
-                className="cursor-pointer bg-[#3d61ff] px-2.5 py-0.5 hover:bg-[#3d61ffcc]"
+                className="cursor-pointer bg-primary px-2.5 py-0.5 font-semibold text-primary-foreground"
               >
                 {category}
               </Badge>
@@ -28,12 +28,17 @@ const Aside: React.FC = () => {
         <div className="flex flex-col gap-5 p-6">
           {postsData.map((post) => {
             return (
-              <div className="flex items-center gap-5" key={post.id}>
+              <div
+                className="flex cursor-pointer items-center gap-5"
+                key={post.id}
+              >
                 <Avatar key={post.id}>
                   <AvatarImage src={post.authorImg} />
                   <AvatarFallback>{post.postTitle}</AvatarFallback>
                 </Avatar>
-                <span className="font-medium">{post.authorFullName}</span>
+                <span className="font-medium hover:underline">
+                  {post.authorFullName}
+                </span>
               </div>
             );
           })}

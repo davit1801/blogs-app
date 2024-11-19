@@ -6,6 +6,8 @@ import headerKa from '@/i18n/ka/header.json';
 import headerEn from '@/i18n/en/header.json';
 import footerKa from '@/i18n/ka/footer.json';
 import footerEn from '@/i18n/en/footer.json';
+import authKa from '@/i18n/ka/auth.json';
+import authEn from '@/i18n/en/auth.json';
 
 const options = {
   order: ['path'],
@@ -25,12 +27,14 @@ i18n
         translation: {
           header: headerKa,
           footer: footerKa,
+          auth: authKa,
         },
       },
       en: {
         translation: {
           header: headerEn,
           footer: footerEn,
+          auth: authEn,
         },
       },
     },

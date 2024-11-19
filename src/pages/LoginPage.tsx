@@ -1,15 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/blog-logo.png';
+import { useTranslation } from 'react-i18next';
 
 const LoginPage: React.FC = () => {
+  const location = useLocation();
+  const pathParts = location.pathname.split('/');
+  const lang = pathParts[1] || 'ka';
+  const { t } = useTranslation();
+
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img alt="Your Company" src={logo} className="mx-auto h-10 w-auto" />
           <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight">
-            Log in to your account
+            {t('auth.login-title')}
           </h2>
         </div>
 
@@ -17,7 +23,7 @@ const LoginPage: React.FC = () => {
           <form action="#" method="POST" className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium">
-                Email address
+                {t('auth.email')}
               </label>
               <div className="mt-2">
                 <input
@@ -37,11 +43,11 @@ const LoginPage: React.FC = () => {
                   htmlFor="password"
                   className="block text-sm/6 font-medium"
                 >
-                  Password
+                  {t('auth.password')}
                 </label>
                 <div className="text-sm">
                   <a className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
+                    {t('auth.forgot')}
                   </a>
                 </div>
               </div>
@@ -62,27 +68,27 @@ const LoginPage: React.FC = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                {t('auth.sign-in')}
               </button>
             </div>
           </form>
           <p className="mt-10 text-center text-sm/6 text-gray-500">
-            Don't have an account?{' '}
+            {t('auth.dont-have')}{' '}
             <Link
-              to={'/register'}
+              to={`/${lang}/register`}
               className="font-semibold text-indigo-600 hover:text-indigo-500"
             >
-              Sign up
+              {t('auth.sign-up')}
             </Link>
           </p>
         </div>
 
         <div className="absolute right-12 top-2 mt-10 flex items-center justify-center gap-x-6">
           <Link
-            to={'/'}
+            to={`/${lang}`}
             className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Go back home
+            {t('auth.go-back')}
           </Link>
         </div>
       </div>

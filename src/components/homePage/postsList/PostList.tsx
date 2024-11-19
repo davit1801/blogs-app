@@ -27,7 +27,9 @@ const PostList: React.FC = () => {
               <p className="text-muted-foreground">{post.description}</p>
             </div>
             <div>
-              <Badge>{post.category}</Badge>
+              <Badge className="cursor-pointer bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                {post.category}
+              </Badge>
             </div>
           </div>
         );

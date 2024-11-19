@@ -6,6 +6,7 @@ import Loading from '@/components/Loading';
 import i18next from 'i18next';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
+const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
@@ -35,24 +36,33 @@ const RoutesComponent: React.FC = () => {
               </Suspense>
             }
           />
+          <Route
+            path="about"
+            element={
+              <Suspense fallback={<Loading />}>
+                <AboutPage />
+              </Suspense>
+            }
+          />
         </Route>
+        <Route
+          path="login"
+          element={
+            <Suspense fallback={<Loading />}>
+              <LoginPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <Suspense fallback={<Loading />}>
+              <RegisterPage />
+            </Suspense>
+          }
+        />
       </Route>
-      <Route
-        path="/login"
-        element={
-          <Suspense fallback={<Loading />}>
-            <LoginPage />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/register"
-        element={
-          <Suspense fallback={<Loading />}>
-            <RegisterPage />
-          </Suspense>
-        }
-      />
+
       <Route
         path="*"
         element={
