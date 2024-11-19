@@ -7,8 +7,8 @@ import postsData, { postsCategory } from '@/data/postsData';
 const Aside: React.FC = () => {
   return (
     <aside className="space-y-8 md:w-1/3">
-      <div className="rounded-xl border border-solid border-[#e5e7eb] bg-[#fcfcfc] shadow">
-        <h4 className="p-6 pb-0 font-semibold text-black">Popular Tags</h4>
+      <div className="rounded-xl border border-solid shadow">
+        <h4 className="p-6 pb-0 font-semibold">Popular Tags</h4>
         <div className="flex flex-wrap gap-5 p-6">
           {postsCategory.map((category) => {
             return (
@@ -23,8 +23,8 @@ const Aside: React.FC = () => {
         </div>
       </div>
 
-      <div className="rounded-xl border border-solid border-[#e5e7eb] bg-[#fcfcfc] shadow">
-        <h4 className="p-6 pb-0 font-semibold text-black">Featured Authors</h4>
+      <div className="rounded-xl border border-solid shadow">
+        <h4 className="p-6 pb-0 font-semibold">Featured Authors</h4>
         <div className="flex flex-col gap-5 p-6">
           {postsData.map((post) => {
             return (
@@ -33,9 +33,7 @@ const Aside: React.FC = () => {
                   <AvatarImage src={post.authorImg} />
                   <AvatarFallback>{post.postTitle}</AvatarFallback>
                 </Avatar>
-                <span className="font-medium text-[#03050c]">
-                  {post.authorFullName}
-                </span>
+                <span className="font-medium">{post.authorFullName}</span>
               </div>
             );
           })}

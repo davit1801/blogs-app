@@ -32,10 +32,10 @@ const ChangeLang: React.FC = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => handleChangeLanguage('ka')}>
-          ქართ
+          ქართული
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleChangeLanguage('en')}>
-          Eng
+          English
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

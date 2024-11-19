@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <header className="border-b border-solid border-b-[#e5e7eb]">
+    <header className="border-b border-solid">
       <Container>
         <div className="flex items-center justify-between p-4">
           <Link to={'/'}>

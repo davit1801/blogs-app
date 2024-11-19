@@ -7,9 +7,9 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#d7d9e07f]">
+    <footer className="border-t bg-muted/50">
       <Container>
-        <div className="px-4 py-6 text-center text-base text-[#555868]">
+        <div className="px-4 py-6 text-center text-base text-muted-foreground">
           <p>
             © {year} {t('footer.copyright')}.
           </p>

@@ -9,7 +9,7 @@ const PostList: React.FC = () => {
         return (
           <div
             key={post.id}
-            className="flex flex-col gap-4 rounded-xl border bg-[#fcfcfc] p-6 shadow"
+            className="flex flex-col gap-4 rounded-xl border bg-card p-6 text-card-foreground shadow"
           >
             <div className="flex flex-col gap-4">
               <img
@@ -17,16 +17,14 @@ const PostList: React.FC = () => {
                 alt={post.postTitle}
                 className="h-[200px] w-full rounded object-cover"
               />
-              <h3 className="text-2xl font-bold text-[#03050c]">
-                {post.postTitle}
-              </h3>
-              <div className="flex gap-2 text-[#555868]">
+              <h3 className="text-2xl font-bold">{post.postTitle}</h3>
+              <div className="flex gap-2 text-muted-foreground">
                 <span className="font-bold">{post.authorFullName}</span>
                 <span>{post.postDate}</span>
               </div>
             </div>
             <div>
-              <p className="text-[#555868]">{post.description}</p>
+              <p className="text-muted-foreground">{post.description}</p>
             </div>
             <div>
               <Badge>{post.category}</Badge>
