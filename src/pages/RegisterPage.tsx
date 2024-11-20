@@ -1,17 +1,49 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '@/assets/blog-logo.png';
 import { useTranslation } from 'react-i18next';
+import { register } from '@/supabase/auth';
+import { useMutation } from '@tanstack/react-query';
 
 const RegisterPage: React.FC = () => {
+  const [formInputData, setFormInputData] = useState({
+    email: '',
+    password: '',
+  });
   const location = useLocation();
   const pathParts = location.pathname.split('/');
   const lang = pathParts[1] || 'ka';
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationKey: ['register'],
+    mutationFn: register,
+    onSuccess: () => {
+      alert('You have successfully registered, you can log in');
+      navigate(`/${lang}/login`);
+    },
+  });
+
+  const handleInputChange = (inputIdentifier: string, newValue: string) => {
+    setFormInputData((prevFormInputData) => ({
+      ...prevFormInputData,
+      [inputIdentifier]: newValue,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutate(formInputData);
+    setFormInputData({
+      email: '',
+      password: '',
+    });
+  };
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-screen items-center justify-center py-8">
+      <div className="w-full max-w-md rounded-xl border bg-card p-6 shadow">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img alt="Your Company" src={logo} className="mx-auto h-10 w-auto" />
           <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight">
@@ -20,21 +52,7 @@ const RegisterPage: React.FC = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm/6 font-medium">
-                {t('auth.full-name')}
-              </label>
-              <div className="mt-2">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                />
-              </div>
-            </div>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium">
                 {t('auth.email')}
@@ -44,6 +62,8 @@ const RegisterPage: React.FC = () => {
                   id="email"
                   name="email"
                   type="email"
+                  value={formInputData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
                   required
                   autoComplete="email"
                   className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
@@ -65,25 +85,10 @@ const RegisterPage: React.FC = () => {
                   id="password"
                   name="password"
                   type="password"
-                  required
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                />
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="confirm-password"
-                  className="block text-sm/6 font-medium"
-                >
-                  {t('auth.confirm-pass')}
-                </label>
-              </div>
-              <div className="mt-2">
-                <input
-                  id="confirm-password"
-                  name="confirm-password"
-                  type="password"
+                  value={formInputData.password}
+                  onChange={(e) =>
+                    handleInputChange('password', e.target.value)
+                  }
                   required
                   className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                 />

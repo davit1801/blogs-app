@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { lazy, Suspense } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Loading from '@/components/Loading';
 import i18next from 'i18next';
+import LangGuard from '@/routes/LangGuard';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
@@ -11,22 +12,10 @@ const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
-const defaultLang = 'ka';
-
 const RoutesComponent: React.FC = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    const pathParts = location.pathname.split('/');
-    const lang = pathParts[1] || 'ka';
-    if (i18next.language !== lang) {
-      i18next.changeLanguage(lang);
-    }
-  }, [location.pathname]);
-
   return (
     <Routes>
-      <Route path=":lang">
+      <Route path=":lang" element={<LangGuard />}>
         <Route element={<Layout />}>
           <Route
             index
@@ -71,7 +60,11 @@ const RoutesComponent: React.FC = () => {
           </Suspense>
         }
       />
-      <Route path="/" element={<Navigate to={`/${defaultLang}`} />} />
+
+      <Route
+        path="/"
+        element={<Navigate to={`/${i18next.language || 'ka'}`} replace />}
+      />
     </Routes>
   );
 };

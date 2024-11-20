@@ -1,17 +1,54 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '@/assets/blog-logo.png';
 import { useTranslation } from 'react-i18next';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { login } from '@/supabase/auth';
 
 const LoginPage: React.FC = () => {
+  const [formInputData, setFormInputData] = useState({
+    email: '',
+    password: '',
+  });
   const location = useLocation();
   const pathParts = location.pathname.split('/');
   const lang = pathParts[1] || 'ka';
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const { mutate, isError } = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      const { access_token } = data.session || {};
+      const email = data.user?.email;
+      if (access_token) localStorage.setItem('access_token', access_token);
+      if (email) localStorage.setItem('user_email', email);
+
+      navigate(`/${lang}`);
+
+      queryClient.invalidateQueries({ queryKey: ['auth'] });
+    },
+    onError: (error) => {
+      console.error('Login failed:', error);
+    },
+  });
+
+  const handleInputChange = (inputIdentifier: string, newValue: string) => {
+    setFormInputData((prevFormInputData) => ({
+      ...prevFormInputData,
+      [inputIdentifier]: newValue,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutate(formInputData);
+  };
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-screen items-center justify-center py-8">
+      <div className="w-full max-w-md rounded-xl border bg-card p-6 shadow">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img alt="Your Company" src={logo} className="mx-auto h-10 w-auto" />
           <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight">
@@ -20,7 +57,7 @@ const LoginPage: React.FC = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium">
                 {t('auth.email')}
@@ -30,6 +67,8 @@ const LoginPage: React.FC = () => {
                   id="email"
                   name="email"
                   type="email"
+                  value={formInputData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
                   required
                   autoComplete="email"
                   className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
@@ -56,12 +95,21 @@ const LoginPage: React.FC = () => {
                   id="password"
                   name="password"
                   type="password"
+                  onChange={(e) =>
+                    handleInputChange('password', e.target.value)
+                  }
                   required
                   autoComplete="current-password"
                   className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                 />
               </div>
             </div>
+
+            {isError && (
+              <p className="font-semibold text-red-500">
+                {t('auth.login-error')}
+              </p>
+            )}
 
             <div>
               <button

@@ -28,7 +28,7 @@ a {
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
+    --card: 0 0% 99%%;
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
@@ -42,6 +42,7 @@ a {
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 100% 100% 100%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
@@ -55,7 +56,7 @@ a {
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
+    --card: 231 41% 5%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
@@ -68,8 +69,8 @@ a {
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
+    --destructive-foreground: 100% 100% 100%;
+    --border: 216 27.9% 16.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
     --chart-1: 220 70% 50%;

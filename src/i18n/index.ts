@@ -9,6 +9,8 @@ import footerEn from '@/i18n/en/footer.json';
 import authKa from '@/i18n/ka/auth.json';
 import authEn from '@/i18n/en/auth.json';
 
+export const SUPPORTED_LANGUAGES = ['ka', 'en'];
+
 const options = {
   order: ['path'],
 
@@ -38,7 +40,7 @@ i18n
         },
       },
     },
-    fallbackLng: 'en',
+    fallbackLng: 'ka',
 
     interpolation: {
       escapeValue: false,
