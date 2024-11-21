@@ -1,6 +1,17 @@
-const postsData = [
+export type postType = {
+  id: string;
+  postDate: string;
+  postTitle: string;
+  authorFullName: string;
+  category: string;
+  description: string;
+  authorImg: string;
+  postImg: string;
+};
+
+const postsData: postType[] = [
   {
-    id: 1,
+    id: '1',
     postDate: '2024-11-01',
     postTitle: 'Exploring the Depths of the Ocean',
     authorFullName: 'Jane Smith',
@@ -13,7 +24,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 2,
+    id: '2',
     postDate: '2024-11-02',
     postTitle: 'The Future of Artificial Intelligence',
     authorFullName: 'John Doe',
@@ -26,7 +37,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 3,
+    id: '3',
     postDate: '2024-11-04',
     postTitle: 'Top 10 Travel Destinations for 2024',
     authorFullName: 'Michael Lee',
@@ -38,7 +49,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 4,
+    id: '4',
     postDate: '2024-11-06',
     postTitle: 'The Evolution of Mobile Technology',
     authorFullName: 'Sarah Parker',
@@ -51,7 +62,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 5,
+    id: '5',
     postDate: '2024-11-07',
     postTitle: 'Plant-Based Diet: Pros and Cons',
     authorFullName: 'Alice Davis',
@@ -64,7 +75,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 6,
+    id: '6',
     postDate: '2024-11-08',
     postTitle: 'Hidden Gems of Southeast Asia',
     authorFullName: 'David Wilson',
@@ -77,7 +88,7 @@ const postsData = [
       'https://g-zwkebgiacpe.vusercontent.net/placeholder.svg?height=40&width=40',
   },
   {
-    id: 7,
+    id: '7',
     postDate: '2024-11-10',
     postTitle: 'Sustainable Fashion: A New Era',
     authorFullName: 'Olivia White',

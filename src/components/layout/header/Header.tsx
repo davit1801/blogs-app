@@ -28,10 +28,10 @@ const Header: React.FC = () => {
 
           <div className="flex gap-3">
             {authData?.isAuthenticated ? (
-              <>
-                <span className="text-sm">Welcome, {authData?.email}</span>
+              <div className="flex items-center gap-4">
+                <span className="text-sm">{authData?.email}</span>
                 <LogoutButton />
-              </>
+              </div>
             ) : (
               <Button asChild>
                 <Link to={'login'}>{t('header.login')}</Link>

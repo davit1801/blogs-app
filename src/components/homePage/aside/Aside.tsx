@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import postsData, { postsCategory } from '@/data/postsData';
+import { Link } from 'react-router-dom';
 
 const Aside: React.FC = () => {
   return (
@@ -28,18 +29,20 @@ const Aside: React.FC = () => {
         <div className="flex flex-col gap-5 p-6">
           {postsData.map((post) => {
             return (
-              <div
-                className="flex cursor-pointer items-center gap-5"
-                key={post.id}
-              >
-                <Avatar key={post.id}>
-                  <AvatarImage src={post.authorImg} />
-                  <AvatarFallback>{post.postTitle}</AvatarFallback>
-                </Avatar>
-                <span className="font-medium hover:underline">
-                  {post.authorFullName}
-                </span>
-              </div>
+              <Link to={`author/${post.id}`}>
+                <div
+                  className="flex cursor-pointer items-center gap-5"
+                  key={post.id}
+                >
+                  <Avatar key={post.id}>
+                    <AvatarImage src={post.authorImg} />
+                    <AvatarFallback>{post.postTitle}</AvatarFallback>
+                  </Avatar>
+                  <span className="font-medium hover:underline">
+                    {post.authorFullName}
+                  </span>
+                </div>
+              </Link>
             );
           })}
         </div>

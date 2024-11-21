@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Loading from '@/components/Loading';
 import i18next from 'i18next';
 import LangGuard from '@/routes/LangGuard';
+import AuthorPage from '@/pages/AuthorPage';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
@@ -30,6 +31,14 @@ const RoutesComponent: React.FC = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <AboutPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="author/:id"
+            element={
+              <Suspense fallback={<Loading />}>
+                <AuthorPage />
               </Suspense>
             }
           />

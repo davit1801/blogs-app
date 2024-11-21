@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { logout } from '@/supabase/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { t } from 'i18next';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -28,7 +29,7 @@ const LogoutButton: React.FC = () => {
   const handleLogout = async () => {
     mutate();
   };
-  return <Button onClick={handleLogout}>გამოსვლა</Button>;
+  return <Button onClick={handleLogout}>{t('header.logout')}</Button>;
 };
 
 export default LogoutButton;

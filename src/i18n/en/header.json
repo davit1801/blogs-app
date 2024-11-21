@@ -4,5 +4,6 @@
     "write": "Write",
     "about": "About"
   },
-  "login": "Sign in"
+  "login": "Login",
+  "logout": "Logout"
 }
