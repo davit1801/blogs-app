@@ -6,12 +6,15 @@ import Loading from '@/components/Loading';
 import i18next from 'i18next';
 import LangGuard from '@/routes/LangGuard';
 import AuthorPage from '@/pages/AuthorPage';
+import AuthGuard from '@/routes/AuthGuard';
+import ProfileGuard from '@/routes/ProfileGuard';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
+const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 
 const RoutesComponent: React.FC = () => {
   return (
@@ -42,12 +45,26 @@ const RoutesComponent: React.FC = () => {
               </Suspense>
             }
           />
+
+          <Route
+            path="profile"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ProfileGuard>
+                  <ProfilePage />
+                </ProfileGuard>
+              </Suspense>
+            }
+          />
         </Route>
+
         <Route
           path="login"
           element={
             <Suspense fallback={<Loading />}>
-              <LoginPage />
+              <AuthGuard>
+                <LoginPage />
+              </AuthGuard>
             </Suspense>
           }
         />
@@ -55,7 +72,9 @@ const RoutesComponent: React.FC = () => {
           path="register"
           element={
             <Suspense fallback={<Loading />}>
-              <RegisterPage />
+              <AuthGuard>
+                <RegisterPage />
+              </AuthGuard>
             </Suspense>
           }
         />

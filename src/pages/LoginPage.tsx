@@ -1,33 +1,26 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '@/assets/blog-logo.png';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { login } from '@/supabase/auth';
+import i18next from 'i18next';
+import GoBackButton from '@/components/buttons/GoBackButton';
 
 const LoginPage: React.FC = () => {
   const [formInputData, setFormInputData] = useState({
     email: '',
     password: '',
   });
-  const location = useLocation();
-  const pathParts = location.pathname.split('/');
-  const lang = pathParts[1] || 'ka';
+
   const { t } = useTranslation();
-  const queryClient = useQueryClient();
+  const lang = i18next.language;
   const navigate = useNavigate();
 
   const { mutate, isError } = useMutation({
     mutationFn: login,
-    onSuccess: (data) => {
-      const { access_token } = data.session || {};
-      const email = data.user?.email;
-      if (access_token) localStorage.setItem('access_token', access_token);
-      if (email) localStorage.setItem('user_email', email);
-
+    onSuccess: () => {
       navigate(`/${lang}`);
-
-      queryClient.invalidateQueries({ queryKey: ['auth'] });
     },
     onError: (error) => {
       console.error('Login failed:', error);
@@ -130,15 +123,9 @@ const LoginPage: React.FC = () => {
             </Link>
           </p>
         </div>
-
-        <div className="absolute right-12 top-2 mt-10 flex items-center justify-center gap-x-6">
-          <Link
-            to={`/${lang}`}
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            {t('auth.go-back')}
-          </Link>
-        </div>
+      </div>
+      <div className="absolute right-12 top-2 mt-10 flex items-center justify-center gap-x-6">
+        <GoBackButton />
       </div>
     </div>
   );

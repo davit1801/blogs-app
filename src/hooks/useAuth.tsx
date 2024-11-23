@@ -1,12 +1,29 @@
-import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { supabase } from '@/supabase';
+import { useSetAtom } from 'jotai';
+import { userAtom } from '@/store/auth';
 
-export const useAuth = () => {
-  return useQuery({
-    queryKey: ['auth'],
-    queryFn: async () => {
-      const token = localStorage.getItem('access_token');
-      const email = localStorage.getItem('user_email');
-      return { isAuthenticated: !!token, email };
-    },
-  });
+const useAuth = () => {
+  const setUser = useSetAtom(userAtom);
+
+  useEffect(() => {
+    const getSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setUser(session);
+    };
+
+    getSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [setUser]);
 };
+
+export default useAuth;

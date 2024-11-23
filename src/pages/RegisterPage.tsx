@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '@/assets/blog-logo.png';
 import { useTranslation } from 'react-i18next';
 import { register } from '@/supabase/auth';
 import { useMutation } from '@tanstack/react-query';
+import i18next from 'i18next';
+import GoBackButton from '@/components/buttons/GoBackButton';
 
 const RegisterPage: React.FC = () => {
   const [formInputData, setFormInputData] = useState({
     email: '',
     password: '',
   });
-  const location = useLocation();
-  const pathParts = location.pathname.split('/');
-  const lang = pathParts[1] || 'ka';
+  const lang = i18next.language;
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -116,12 +116,7 @@ const RegisterPage: React.FC = () => {
         </div>
 
         <div className="absolute right-12 top-2 mt-10 flex items-center justify-center gap-x-6">
-          <Link
-            to={`/${lang}`}
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            {t('auth.go-back')}
-          </Link>
+          <GoBackButton />
         </div>
       </div>
     </div>

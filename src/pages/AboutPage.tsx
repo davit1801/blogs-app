@@ -5,16 +5,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { t } from 'i18next';
+import i18next from 'i18next';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { GoBook } from 'react-icons/go';
 import { SlEnergy, SlPeople } from 'react-icons/sl';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AboutPage: React.FC = () => {
-  const location = useLocation();
-  const pathParts = location.pathname.split('/');
-  const lang = pathParts[1] || 'ka';
+  const { t } = useTranslation();
+  const lang = i18next.language;
+
   return (
     <div className="mx-auto max-w-4xl space-y-12 py-8">
       <div className="py-8 text-center">

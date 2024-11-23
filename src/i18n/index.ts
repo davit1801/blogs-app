@@ -10,6 +10,8 @@ import authKa from '@/i18n/ka/auth.json';
 import authEn from '@/i18n/en/auth.json';
 import aboutKa from '@/i18n/ka/about.json';
 import aboutEn from '@/i18n/en/about.json';
+import notFoundKa from '@/i18n/ka/notFound.json';
+import notFoundEn from '@/i18n/en/notFound.json';
 
 export const SUPPORTED_LANGUAGES = ['ka', 'en'];
 
@@ -33,6 +35,7 @@ i18n
           footer: footerKa,
           auth: authKa,
           about: aboutKa,
+          notFound: notFoundKa,
         },
       },
       en: {
@@ -41,6 +44,7 @@ i18n
           footer: footerEn,
           auth: authEn,
           about: aboutEn,
+          notFound: notFoundEn,
         },
       },
     },

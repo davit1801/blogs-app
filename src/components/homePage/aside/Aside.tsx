@@ -29,7 +29,7 @@ const Aside: React.FC = () => {
         <div className="flex flex-col gap-5 p-6">
           {postsData.map((post) => {
             return (
-              <Link to={`author/${post.id}`}>
+              <Link to={`author/${post.id}`} key={post.id}>
                 <div
                   className="flex cursor-pointer items-center gap-5"
                   key={post.id}

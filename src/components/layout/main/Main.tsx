@@ -1,4 +1,4 @@
-import Container from '@/components/container/Container';
+import Container from '@/components/layout/container/Container';
 import React, { PropsWithChildren } from 'react';
 
 const Main: React.FC<PropsWithChildren> = ({ children }) => {

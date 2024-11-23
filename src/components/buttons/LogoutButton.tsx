@@ -1,25 +1,21 @@
 import { Button } from '@/components/ui/button';
 import { logout } from '@/supabase/auth';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { t } from 'i18next';
+import { useMutation } from '@tanstack/react-query';
+import i18next from 'i18next';
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const LogoutButton: React.FC = () => {
-  const location = useLocation();
-  const pathParts = location.pathname.split('/');
-  const lang = pathParts[1] || 'ka';
+  const { t } = useTranslation();
+  const lang = i18next.language;
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
+    mutationKey: ['logout'],
     mutationFn: logout,
     onSuccess: () => {
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('user_email');
-
       navigate(`/${lang}`);
-      queryClient.invalidateQueries({ queryKey: ['auth'] });
     },
     onError: (error) => {
       console.error('Login failed:', error);
@@ -29,6 +25,7 @@ const LogoutButton: React.FC = () => {
   const handleLogout = async () => {
     mutate();
   };
+
   return <Button onClick={handleLogout}>{t('header.logout')}</Button>;
 };
 

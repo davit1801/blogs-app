@@ -6,7 +6,7 @@ const PostList: React.FC = () => {
   return (
     <section className="flex flex-col gap-8 space-y-8 md:w-2/3">
       {postsData.map((post) => {
-        return <PostCard post={post} />;
+        return <PostCard key={post.id} post={post} />;
       })}
     </section>
   );

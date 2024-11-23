@@ -1,20 +1,22 @@
-import Container from '@/components/container/Container';
+import Container from '@/components/layout/container/Container';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/blog-logo.png';
 import { ModeToggle } from '@/components/buttons/mode-toggle';
 import ChangeLang from '@/components/buttons/ChangeLang';
 import HeaderNavigation from '@/components/layout/header/navigation/HeaderNavigation';
-import { t } from 'i18next';
-import { useAuth } from '@/hooks/useAuth';
 import LogoutButton from '@/components/buttons/LogoutButton';
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
+import { useAtomValue } from 'jotai';
+import { userAtom } from '@/store/auth';
+import ProfileAvatar from '@/components/buttons/ProfileAvatar';
 
 const Header: React.FC = () => {
-  const location = useLocation();
-  const pathParts = location.pathname.split('/');
-  const lang = pathParts[1] || 'ka';
-  const { data: authData } = useAuth();
+  const { t } = useTranslation();
+  const lang = i18next.language;
+  const user = useAtomValue(userAtom);
 
   return (
     <header className="border-b border-solid">
@@ -27,9 +29,11 @@ const Header: React.FC = () => {
           <HeaderNavigation lang={lang} />
 
           <div className="flex gap-3">
-            {authData?.isAuthenticated ? (
+            <ModeToggle />
+            <ChangeLang />
+            {user ? (
               <div className="flex items-center gap-4">
-                <span className="text-sm">{authData?.email}</span>
+                <ProfileAvatar />
                 <LogoutButton />
               </div>
             ) : (
@@ -37,9 +41,6 @@ const Header: React.FC = () => {
                 <Link to={'login'}>{t('header.login')}</Link>
               </Button>
             )}
-
-            <ModeToggle />
-            <ChangeLang />
           </div>
         </div>
       </Container>
