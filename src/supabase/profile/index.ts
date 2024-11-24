@@ -25,7 +25,8 @@ export const getProfileInfo = async (id: string) => {
     const { data, error } = await supabase
       .from('profiles')
       .select('*')
-      .eq('id', id);
+      .eq('id', id)
+      .single();
 
     if (error) {
       console.error('Error fetching profile information:', error.message);

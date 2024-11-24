@@ -12,11 +12,15 @@ import i18next from 'i18next';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '@/store/auth';
 import ProfileAvatar from '@/components/buttons/ProfileAvatar';
+// import { userProfileAtom } from '@/store/profile';
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
   const lang = i18next.language;
   const user = useAtomValue(userAtom);
+  // const profile = useAtomValue(userProfileAtom)
+
+  // console.log(profile)
 
   return (
     <header className="border-b border-solid">
@@ -28,7 +32,7 @@ const Header: React.FC = () => {
 
           <HeaderNavigation lang={lang} />
 
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
             <ModeToggle />
             <ChangeLang />
             {user ? (

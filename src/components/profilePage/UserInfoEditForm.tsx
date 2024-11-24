@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,10 +12,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FaRegEdit } from 'react-icons/fa';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { userAtom } from '@/store/auth';
 import { useMutation } from '@tanstack/react-query';
-import { fillProfileInfo, getProfileInfo } from '@/supabase/profile';
+import { fillProfileInfo } from '@/supabase/profile';
+import { useTranslation } from 'react-i18next';
+import { userProfileAtom } from '@/store/profile';
 
 type profileFillsType = {
   avatar_url: string | null;
@@ -25,33 +27,34 @@ type profileFillsType = {
   id: string;
 };
 
-const UserInfoEditForm: React.FC = () => {
+interface UserInfoEditFormProps {
+  profile: profileFillsType;
+}
+
+const UserInfoEditForm: React.FC<UserInfoEditFormProps> = ({ profile }) => {
+  const { t } = useTranslation();
   const user = useAtomValue(userAtom);
+  const setProfile = useSetAtom(userProfileAtom);
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const [profilePayload, setProfilePayload] = useState<profileFillsType>({
-    full_name_ka: '',
-    full_name_en: '',
-    phone_number: '',
-    id: '',
-    avatar_url: '',
+    full_name_ka: profile?.full_name_ka,
+    full_name_en: profile?.full_name_en,
+    phone_number: profile?.phone_number,
+    avatar_url: profile?.avatar_url,
+    id: profile?.id,
   });
 
-  useEffect(() => {
-    if (user) {
-      getProfileInfo(user?.user.id).then((res) => {
-        setProfilePayload({
-          full_name_ka: res[0].full_name_ka,
-          full_name_en: res[0].full_name_en,
-          phone_number: res[0].phone_number,
-          avatar_url: res[0].avatar_url,
-          id: res[0].id,
-        });
-      });
-    }
-  }, [user]);
-
   const { mutate } = useMutation({
-    mutationKey: ['fill-profile-info'],
+    mutationKey: ['profile-info'],
     mutationFn: fillProfileInfo,
+    onSuccess: () => {
+      setIsDialogOpen(false);
+      setProfile((prevValue) => {
+        return { prevValue, ...profilePayload };
+      });
+    },
   });
 
   const handleInputChange = (inputIdentifier: string, newValue: string) => {
@@ -70,23 +73,22 @@ const UserInfoEditForm: React.FC = () => {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogTrigger>
         <FaRegEdit className="cursor-pointer text-2xl" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
+          <DialogTitle>{t('profile.edit-profile')}</DialogTitle>
+          <DialogDescription>{t('profile.dialog-title')}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="fullname_ka" className="text-right">
               სახელი გვარი
             </Label>
             <Input
+              id="full_name_ka"
               name="full_name_ka"
               className="col-span-3"
               value={profilePayload.full_name_ka || ''}
@@ -96,10 +98,11 @@ const UserInfoEditForm: React.FC = () => {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="fullname_en" className="text-right">
               Full name
             </Label>
             <Input
+              id="full_name_en"
               name="full_name_en"
               className="col-span-3"
               value={profilePayload.full_name_en || ''}
@@ -109,10 +112,11 @@ const UserInfoEditForm: React.FC = () => {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Avatar URL
+            <Label htmlFor="avatar_url" className="text-right">
+              {t('profile.avatar-url')}
             </Label>
             <Input
+              id="avatar_url"
               name="avatar_url"
               className="col-span-3"
               value={profilePayload.avatar_url || ''}
@@ -120,10 +124,11 @@ const UserInfoEditForm: React.FC = () => {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Phone Number
+            <Label htmlFor="phone_number" className="text-right">
+              {t('profile.phone-number')}
             </Label>
             <Input
+              id="phone_number"
               name="phone_number"
               className="col-span-3"
               value={profilePayload.phone_number || ''}
@@ -135,7 +140,7 @@ const UserInfoEditForm: React.FC = () => {
         </div>
         <DialogFooter>
           <Button type="submit" onClick={handleSubmit}>
-            Save changes
+            {t('profile.save-btn')}
           </Button>
         </DialogFooter>
       </DialogContent>
