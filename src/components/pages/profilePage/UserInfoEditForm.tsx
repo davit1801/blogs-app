@@ -35,7 +35,6 @@ const UserInfoEditForm: React.FC<UserInfoEditFormProps> = ({ profile }) => {
   const { t } = useTranslation();
   const user = useAtomValue(userAtom);
   const setProfile = useSetAtom(userProfileAtom);
-
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [profilePayload, setProfilePayload] = useState<profileFillsType>({
@@ -52,7 +51,7 @@ const UserInfoEditForm: React.FC<UserInfoEditFormProps> = ({ profile }) => {
     onSuccess: () => {
       setIsDialogOpen(false);
       setProfile((prevValue) => {
-        return { prevValue, ...profilePayload };
+        return { ...prevValue, ...profilePayload };
       });
     },
   });

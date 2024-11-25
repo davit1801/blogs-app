@@ -1,4 +1,4 @@
-import PostCard from '@/components/homePage/postCard/PostCard';
+import PostCard from '@/components/pages/homePage/postCard/PostCard';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import postsData from '@/data/postsData';
 import React from 'react';

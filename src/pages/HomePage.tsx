@@ -1,5 +1,5 @@
-import Aside from '@/components/homePage/aside/Aside';
-import PostList from '@/components/homePage/postsList/PostList';
+import Aside from '@/components/pages/homePage/aside/Aside';
+import PostList from '@/components/pages/homePage/postsList/PostList';
 import React from 'react';
 
 const HomePage: React.FC = () => {

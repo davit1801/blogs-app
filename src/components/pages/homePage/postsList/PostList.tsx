@@ -1,6 +1,6 @@
+import PostCard from '@/components/pages/homePage/postCard/PostCard';
 import postsData from '@/data/postsData';
 import React from 'react';
-import PostCard from '@/components/homePage/postCard/PostCard';
 
 const PostList: React.FC = () => {
   return (
