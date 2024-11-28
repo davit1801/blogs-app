@@ -1,43 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '@/assets/blog-logo.png';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from '@tanstack/react-query';
-import { login } from '@/supabase/auth';
+
 import i18next from 'i18next';
 import GoBackButton from '@/components/buttons/GoBackButton';
+import LoginForm from '@/components/pages/loginPage/LoginForm';
 
 const LoginPage: React.FC = () => {
-  const [formInputData, setFormInputData] = useState({
-    email: '',
-    password: '',
-  });
-
   const { t } = useTranslation();
   const lang = i18next.language;
-  const navigate = useNavigate();
-
-  const { mutate, isError } = useMutation({
-    mutationFn: login,
-    onSuccess: () => {
-      navigate(`/${lang}`);
-    },
-    onError: (error) => {
-      console.error('Login failed:', error);
-    },
-  });
-
-  const handleInputChange = (inputIdentifier: string, newValue: string) => {
-    setFormInputData((prevFormInputData) => ({
-      ...prevFormInputData,
-      [inputIdentifier]: newValue,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    mutate(formInputData);
-  };
 
   return (
     <div className="flex min-h-screen items-center justify-center py-8">
@@ -50,69 +22,8 @@ const LoginPage: React.FC = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email" className="block text-sm/6 font-medium">
-                {t('auth.email')}
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formInputData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  required
-                  autoComplete="email"
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                />
-              </div>
-            </div>
+          <LoginForm />
 
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm/6 font-medium"
-                >
-                  {t('auth.password')}
-                </label>
-                <div className="text-sm">
-                  <a className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    {t('auth.forgot')}
-                  </a>
-                </div>
-              </div>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={(e) =>
-                    handleInputChange('password', e.target.value)
-                  }
-                  required
-                  autoComplete="current-password"
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                />
-              </div>
-            </div>
-
-            {isError && (
-              <p className="font-semibold text-red-500">
-                {t('auth.login-error')}
-              </p>
-            )}
-
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                {t('auth.sign-in')}
-              </button>
-            </div>
-          </form>
           <p className="mt-10 text-center text-sm/6 text-gray-500">
             {t('auth.dont-have')}{' '}
             <Link

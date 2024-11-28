@@ -1,4 +1,4 @@
-export type profilePayloadTypes = {
+export type userProfileTypes = {
   avatar_url: string | null;
   full_name_en: string | null;
   full_name_ka: string | null;
