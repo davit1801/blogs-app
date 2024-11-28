@@ -41,7 +41,7 @@ const LoginForm: React.FC = () => {
   const handleFormSubmit: SubmitHandler<LoginFormValues> = (inputFields) => {
     mutate(inputFields);
   };
-
+  console.log(errors?.password?.message);
   return (
     <form className="space-y-6" onSubmit={handleSubmit(handleFormSubmit)}>
       <div className="flex flex-col gap-2">
@@ -53,10 +53,10 @@ const LoginForm: React.FC = () => {
           name="email"
           control={control}
           rules={{
-            required: t('auth.email-required'),
+            required: 'auth.email-required',
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: t('auth.invalid-email'),
+              message: 'auth.invalid-email',
             },
           }}
           render={({ field: { onChange, value } }) => {
@@ -72,7 +72,7 @@ const LoginForm: React.FC = () => {
           }}
         />
         {errors.email && (
-          <p className="text-sm text-red-500">{errors.email.message}</p>
+          <p className="text-sm text-red-500">{t(`${errors.email.message}`)}</p>
         )}
       </div>
 
@@ -92,10 +92,10 @@ const LoginForm: React.FC = () => {
           name="password"
           control={control}
           rules={{
-            required: t('auth.password-required'),
+            required: 'auth.password-required',
             minLength: {
               value: 8,
-              message: t('auth.password-minlength', { min: 8 }),
+              message: 'auth.password-minlength',
             },
           }}
           render={({ field: { onChange, value } }) => {
@@ -112,7 +112,9 @@ const LoginForm: React.FC = () => {
           }}
         />
         {errors.password && (
-          <p className="text-sm text-red-500">{errors.password.message}</p>
+          <p className="text-sm text-red-500">
+            {t(`${errors.password.message}`)}
+          </p>
         )}
       </div>
 

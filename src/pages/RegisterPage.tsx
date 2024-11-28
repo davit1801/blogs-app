@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import GoBackButton from '@/components/buttons/GoBackButton';
 import RegisterForm from '@/components/pages/registerPage/RegisterForm';
+import ChangeLang from '@/components/buttons/ChangeLang';
+import { ModeToggle } from '@/components/buttons/mode-toggle';
 
 const RegisterPage: React.FC = () => {
   const lang = i18next.language;
@@ -34,8 +36,10 @@ const RegisterPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="absolute right-12 top-2 mt-10 flex items-center justify-center gap-x-6">
+        <div className="absolute right-12 top-2 mt-10 flex items-center justify-center gap-3">
           <GoBackButton />
+          <ModeToggle />
+          <ChangeLang />
         </div>
       </div>
     </div>
