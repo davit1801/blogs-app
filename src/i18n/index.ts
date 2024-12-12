@@ -14,6 +14,8 @@ import notFoundKa from '@/i18n/ka/notFound.json';
 import notFoundEn from '@/i18n/en/notFound.json';
 import profileKa from '@/i18n/ka/profile.json';
 import profileEn from '@/i18n/en/profile.json';
+import writeKa from '@/i18n/ka/write.json';
+import writeEn from '@/i18n/en/write.json';
 
 export const SUPPORTED_LANGUAGES = ['ka', 'en'];
 
@@ -39,6 +41,7 @@ i18n
           about: aboutKa,
           notFound: notFoundKa,
           profile: profileKa,
+          write: writeKa,
         },
       },
       en: {
@@ -49,6 +52,7 @@ i18n
           about: aboutEn,
           notFound: notFoundEn,
           profile: profileEn,
+          write: writeEn,
         },
       },
     },

@@ -1,6 +1,8 @@
 {
   "profile-info": "პროფილის ინფორმაცია",
   "email": "მეილი",
+  "full_name_ka": "სახელი გვარი",
+  "full_name_en": "Full name",
   "avatar-url": "ავატარის ბმული",
   "phone-number": "ტელეფონის ნომერი",
   "edit-profile": "მონაცემების რედაქტირება",

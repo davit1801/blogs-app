@@ -21,7 +21,7 @@ const HeaderNavigation: React.FC<PropsType> = ({ lang }) => {
           <NavLink to={`/${lang}`} end className={handleActiveNav}>
             {t('header.navItems.home')}
           </NavLink>
-          <NavLink to="write" className={handleActiveNav}>
+          <NavLink to="write-blog" className={handleActiveNav}>
             {t('header.navItems.write')}
           </NavLink>
           <NavLink to="about" className={handleActiveNav}>

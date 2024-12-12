@@ -1,0 +1,10 @@
+{
+  "title-ka": "ბლოგის სათაური",
+  "title-en": "Blog title",
+  "description-ka": "ბლოგის შინაარსი",
+  "description-en": "Blog description",
+  "image": "Post image",
+  "button": "Create blog",
+  "onSuccess": "Successfully Created Blog",
+  "onError": "Failed to create blog, please try again."
+}
