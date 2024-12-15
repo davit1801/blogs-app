@@ -1,22 +1,13 @@
 import Container from '@/components/layout/container/Container';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import logo from '@/assets/blog-logo.png';
-import { ModeToggle } from '@/components/buttons/mode-toggle';
-import ChangeLang from '@/components/buttons/ChangeLang';
 import HeaderNavigation from '@/components/layout/header/navigation/HeaderNavigation';
-import LogoutButton from '@/components/buttons/LogoutButton';
-import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
-import { useAtomValue } from 'jotai';
-import { userAtom } from '@/store/auth';
-import ProfileAvatar from '@/components/buttons/ProfileAvatar';
+import MenuButtons from '@/components/MenuButtons';
 
 const Header: React.FC = () => {
-  const { t } = useTranslation();
   const lang = i18next.language;
-  const user = useAtomValue(userAtom);
 
   return (
     <header className="border-b border-solid">
@@ -28,20 +19,7 @@ const Header: React.FC = () => {
 
           <HeaderNavigation lang={lang} />
 
-          <div className="flex items-center gap-3">
-            <ModeToggle />
-            <ChangeLang />
-            {user ? (
-              <div className="flex items-center gap-4">
-                <ProfileAvatar />
-                <LogoutButton />
-              </div>
-            ) : (
-              <Button asChild>
-                <Link to={'login'}>{t('header.login')}</Link>
-              </Button>
-            )}
-          </div>
+          <MenuButtons />
         </div>
       </Container>
     </header>

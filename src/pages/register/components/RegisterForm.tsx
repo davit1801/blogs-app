@@ -15,6 +15,9 @@ type RegisterFormValues = {
 };
 
 const RegisterForm: React.FC = () => {
+  const lang = i18next.language;
+  const navigate = useNavigate();
+
   const {
     control,
     handleSubmit,
@@ -26,9 +29,6 @@ const RegisterForm: React.FC = () => {
       password: '',
     },
   });
-
-  const lang = i18next.language;
-  const navigate = useNavigate();
 
   const { mutate, isError, isPending } = useMutation({
     mutationKey: ['register'],

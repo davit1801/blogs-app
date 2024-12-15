@@ -4,7 +4,7 @@ import Main from '@/components/layout/main/Main';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-const Layout: React.FC = () => {
+const DefaultLayout: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Header />
@@ -16,4 +16,4 @@ const Layout: React.FC = () => {
   );
 };
 
-export default Layout;
+export default DefaultLayout;

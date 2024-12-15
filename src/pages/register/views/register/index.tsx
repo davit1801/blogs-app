@@ -42,9 +42,9 @@ const RegisterPage: React.FC = () => {
           </div>
 
           <div className="absolute right-12 top-2 mt-10 flex items-center justify-center gap-3">
-            <GoBackButton />
             <ModeToggle />
             <ChangeLang />
+            <GoBackButton />
           </div>
         </div>
       </div>

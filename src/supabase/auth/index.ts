@@ -48,3 +48,16 @@ export const logout = async () => {
     throw err;
   }
 };
+
+export const getSession = async () => {
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    return session;
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    return null;
+  }
+};

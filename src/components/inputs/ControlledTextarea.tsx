@@ -12,7 +12,7 @@ type ControlledInputProps = {
   rules?: Record<string, any>;
   error?: FieldError;
   className?: string;
-};
+} & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const ControlledTextarea: React.FC<ControlledInputProps> = ({
   name,
@@ -23,6 +23,7 @@ const ControlledTextarea: React.FC<ControlledInputProps> = ({
   className,
   ...props
 }) => {
+  console.log(props);
   return (
     <div className="flex flex-col gap-2">
       <Label htmlFor={name} className="block text-sm/6 font-medium">

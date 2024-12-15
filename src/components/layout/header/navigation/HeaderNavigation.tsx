@@ -1,12 +1,12 @@
-import { t } from 'i18next';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink, NavLinkRenderProps } from 'react-router-dom';
 
 type PropsType = {
   lang: string;
 };
 
-const activeLinkStyle = 'text-destructive-foreground';
+const activeLinkStyle = 'text-primary';
 const linkStyle = 'text-muted-foreground hover:text-foreground';
 
 const handleActiveNav = ({ isActive }: NavLinkRenderProps) => {
@@ -14,6 +14,8 @@ const handleActiveNav = ({ isActive }: NavLinkRenderProps) => {
 };
 
 const HeaderNavigation: React.FC<PropsType> = ({ lang }) => {
+  const { t } = useTranslation();
+
   return (
     <nav>
       <ul className="flex gap-4">

@@ -61,11 +61,13 @@ const WriteBlogForm: React.FC = () => {
         control={control}
         name="description_ka"
         label="write.description-ka"
+        rows={5}
       />
       <ControlledTextarea
         control={control}
         name="description_en"
         label="write.description-en"
+        rows={5}
       />
 
       <ControlledInput

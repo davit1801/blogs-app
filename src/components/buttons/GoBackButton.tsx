@@ -10,7 +10,7 @@ const GoBackButton: React.FC = () => {
 
   return (
     <Link to={`/${lang}`}>
-      <Button>{t('auth.go-back')}</Button>
+      <Button>{t('auth.go-home')}</Button>
     </Link>
   );
 };

@@ -14,7 +14,7 @@ type ControlledInputProps = {
   rules?: Record<string, any>;
   error?: FieldError;
   className?: string;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const ControlledInput: React.FC<ControlledInputProps> = ({
   name,
@@ -40,11 +40,15 @@ const ControlledInput: React.FC<ControlledInputProps> = ({
         render={({ field: { onChange, value } }) => {
           return type === 'file' ? (
             <Input
+              id={name}
+              name={name}
+              className={className}
               type="file"
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 onChange(file);
               }}
+              {...props}
             />
           ) : (
             <Input

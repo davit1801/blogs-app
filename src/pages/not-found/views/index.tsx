@@ -3,7 +3,7 @@ import Container from '@/components/layout/container/Container';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const NotFoundPage: React.FC = () => {
+const NotFoundView: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -26,4 +26,4 @@ const NotFoundPage: React.FC = () => {
   );
 };
 
-export default NotFoundPage;
+export default NotFoundView;

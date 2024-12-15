@@ -1,4 +1,3 @@
-// import Loading from '@/components/Loading';
 import { userAtom } from '@/store/auth';
 import i18next from 'i18next';
 import { useAtomValue } from 'jotai';

@@ -32,8 +32,7 @@ export const createBlog = async ({
         );
       }
 
-      console.log('Successfully Created Blog');
-      // return uploadResponse;
+      return uploadResponse;
     } else {
       throw new Error('No image file provided in inputFields.');
     }
@@ -43,11 +42,12 @@ export const createBlog = async ({
   }
 };
 
-export const getBlogs = async () => {
+export const getBlogs = async (searchText: string) => {
   try {
     const { data, error } = await supabase
       .from('blogs')
       .select('*')
+      .or(`title_en.ilike.%${searchText}%,title_ka.ilike.%${searchText}%`)
       .throwOnError();
 
     if (error) throw error;

@@ -1,8 +1,6 @@
-import RoutesComponent from '@/router/RoutesComponent';
-import useAuth from '@/hooks/useAuth';
+import RoutesComponent from '@/router';
 
 function App() {
-  useAuth();
   return <RoutesComponent />;
 }
 

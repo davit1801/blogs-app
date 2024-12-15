@@ -6,6 +6,8 @@ import headerKa from '@/i18n/ka/header.json';
 import headerEn from '@/i18n/en/header.json';
 import footerKa from '@/i18n/ka/footer.json';
 import footerEn from '@/i18n/en/footer.json';
+import homeKa from '@/i18n/ka/home.json';
+import homeEn from '@/i18n/en/home.json';
 import authKa from '@/i18n/ka/auth.json';
 import authEn from '@/i18n/en/auth.json';
 import aboutKa from '@/i18n/ka/about.json';
@@ -37,6 +39,7 @@ i18n
         translation: {
           header: headerKa,
           footer: footerKa,
+          home: homeKa,
           auth: authKa,
           about: aboutKa,
           notFound: notFoundKa,
@@ -48,6 +51,7 @@ i18n
         translation: {
           header: headerEn,
           footer: footerEn,
+          home: homeEn,
           auth: authEn,
           about: aboutEn,
           notFound: notFoundEn,
