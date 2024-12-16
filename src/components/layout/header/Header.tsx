@@ -17,7 +17,7 @@ const Header: React.FC = () => {
             <img src={logo} alt="blog logo" className="w-10" />
           </Link>
 
-          <HeaderNavigation lang={lang} />
+          <HeaderNavigation />
 
           <MenuButtons />
         </div>

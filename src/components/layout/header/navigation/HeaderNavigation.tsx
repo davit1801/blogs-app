@@ -1,10 +1,7 @@
+import i18next from 'i18next';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, NavLinkRenderProps } from 'react-router-dom';
-
-type PropsType = {
-  lang: string;
-};
 
 const activeLinkStyle = 'text-primary';
 const linkStyle = 'text-muted-foreground hover:text-foreground';
@@ -13,7 +10,8 @@ const handleActiveNav = ({ isActive }: NavLinkRenderProps) => {
   return isActive ? activeLinkStyle : linkStyle;
 };
 
-const HeaderNavigation: React.FC<PropsType> = ({ lang }) => {
+const HeaderNavigation: React.FC = () => {
+  const lang = i18next.language;
   const { t } = useTranslation();
 
   return (
