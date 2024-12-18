@@ -26,7 +26,11 @@ const ChangeLang: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="language selection menu"
+        >
           <GrLanguage />
         </Button>
       </DropdownMenuTrigger>

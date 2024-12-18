@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { t } from 'i18next';
 import { Textarea } from '@/components/ui/textarea';
 
-type ControlledInputProps = {
+type ControlledTextareaProps = {
   name: string;
   label: string;
   control: Control<any>;
@@ -14,7 +14,7 @@ type ControlledInputProps = {
   className?: string;
 } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-const ControlledTextarea: React.FC<ControlledInputProps> = ({
+const ControlledTextarea: React.FC<ControlledTextareaProps> = ({
   name,
   label,
   control,

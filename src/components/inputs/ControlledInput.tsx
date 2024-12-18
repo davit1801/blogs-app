@@ -10,7 +10,6 @@ type ControlledInputProps = {
   label: string;
   control: Control<any>;
   type?: string;
-  autoComplete?: string;
   rules?: Record<string, any>;
   error?: FieldError;
   className?: string;

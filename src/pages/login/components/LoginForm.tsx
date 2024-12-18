@@ -51,6 +51,7 @@ const LoginForm: React.FC = () => {
     <form className="space-y-6" onSubmit={handleSubmit(handleFormSubmit)}>
       <ControlledInput
         name="email"
+        aria-label="Email address"
         label="auth.email"
         control={control}
         autoComplete="email"
@@ -62,7 +63,7 @@ const LoginForm: React.FC = () => {
         type="password"
         label="auth.password"
         control={control}
-        autoComplete="password"
+        autoComplete="current-password"
         error={errors.password}
       />
 

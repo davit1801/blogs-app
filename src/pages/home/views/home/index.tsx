@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col gap-12 px-4 py-8">
       <SearchBar className="self-center shadow-lg" />
-      <div className="flex gap-10">
+      <div className="flex flex-col gap-5 md:flex-row md:gap-10">
         <BlogList />
         <Aside />
       </div>

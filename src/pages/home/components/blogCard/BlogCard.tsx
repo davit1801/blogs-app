@@ -1,4 +1,4 @@
-import { formatDate } from '@/lib/formatDate';
+import { formatDate } from '@/lib/dayjs/formatDate';
 import { SingleBlogTypes } from '@/supabase/blogs/index.types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,12 +17,12 @@ const BlogCard: React.FC<propsType> = ({ blog }) => {
   const description = lang === 'en' ? blog.description_en : blog.description_ka;
 
   return (
-    <div className="flex max-h-[270px] gap-8 rounded-xl border bg-card p-6 text-card-foreground shadow">
-      <div className="w-[300px]">
+    <div className="md: flex flex-col gap-8 rounded-xl border bg-card p-6 text-card-foreground shadow md:flex-row">
+      <div className="p-8 md:w-[250px] md:p-0">
         <img
           src={blogImgUrl}
           alt={blog.title_en || 'blog image'}
-          className="h-full w-[250px] max-w-none rounded object-cover"
+          className="w-full rounded object-cover md:w-[250px] md:max-w-none"
         />
       </div>
       <div className="flex flex-col gap-2 overflow-hidden overflow-ellipsis text-muted-foreground">

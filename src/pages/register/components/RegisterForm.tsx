@@ -48,6 +48,7 @@ const RegisterForm: React.FC = () => {
       <ControlledInput
         name="email"
         label="auth.email"
+        aria-label="Email address"
         control={control}
         autoComplete="email"
         error={errors.email}
@@ -58,7 +59,6 @@ const RegisterForm: React.FC = () => {
         type="password"
         label="auth.password"
         control={control}
-        autoComplete="password"
         error={errors.password}
       />
 

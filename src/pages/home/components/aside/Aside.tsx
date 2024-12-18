@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Aside: React.FC = () => {
   return (
-    <aside className="space-y-8 md:w-1/3">
+    <aside className="space-y-8">
       <div className="rounded-xl border border-solid shadow">
         <h4 className="p-6 pb-0 font-semibold">Popular Tags</h4>
         <div className="flex flex-wrap gap-5 p-6">
