@@ -5,7 +5,6 @@ import 'dayjs/locale/ka';
 
 const thresholds = [
   { l: 's', r: 1 },
-  { l: 'ss', r: 59, d: 'second' },
   { l: 'm', r: 1 },
   { l: 'mm', r: 59, d: 'minute' },
   { l: 'h', r: 1 },

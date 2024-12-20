@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import OfferCard from '@/pages/about/components/OfferCard';
+import { DEFAULT_PATHS } from '@/router/routes/default/index.enum';
 import i18next from 'i18next';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,7 +34,9 @@ const AboutPage: React.FC = () => {
           <h2 className="mb-4 text-3xl font-semibold">{t('about.join-us')}</h2>
           <p className="mb-6 text-muted-foreground">{t('about.join-title')}</p>
           <Button asChild>
-            <Link to={`/${lang}/write-blog`}>{t('about.button')}</Link>
+            <Link to={`/${lang}/${DEFAULT_PATHS.WRITE}`}>
+              {t('about.button')}
+            </Link>
           </Button>
         </div>
       </section>

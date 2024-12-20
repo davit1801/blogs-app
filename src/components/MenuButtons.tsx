@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '@/store/auth';
 import { useTranslation } from 'react-i18next';
+import { AUTH_PATHS } from '@/router/routes/auth/index.enum';
 
 const MenuButtons: React.FC = () => {
   const user = useAtomValue(userAtom);
@@ -23,7 +24,7 @@ const MenuButtons: React.FC = () => {
           <LogoutButton />
         </div>
       ) : (
-        <Link to={'login'}>
+        <Link to={AUTH_PATHS.LOGIN}>
           <Button>{t('header.login')}</Button>
         </Link>
       )}

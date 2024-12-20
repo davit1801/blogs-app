@@ -47,6 +47,7 @@ export const getBlogs = async (searchText: string) => {
     const { data, error } = await supabase
       .from('blogs')
       .select('*')
+      .order('id')
       .or(`title_en.ilike.%${searchText}%,title_ka.ilike.%${searchText}%`)
       .throwOnError();
 

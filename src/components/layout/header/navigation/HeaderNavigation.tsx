@@ -1,3 +1,4 @@
+import { DEFAULT_PATHS } from '@/router/routes/default/index.enum';
 import i18next from 'i18next';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,10 +22,10 @@ const HeaderNavigation: React.FC = () => {
           <NavLink to={`/${lang}`} end className={handleActiveNav}>
             {t('header.navItems.home')}
           </NavLink>
-          <NavLink to="write-blog" className={handleActiveNav}>
+          <NavLink to={DEFAULT_PATHS.WRITE} className={handleActiveNav}>
             {t('header.navItems.write')}
           </NavLink>
-          <NavLink to="about" className={handleActiveNav}>
+          <NavLink to={DEFAULT_PATHS.ABOUT} className={handleActiveNav}>
             {t('header.navItems.about')}
           </NavLink>
         </li>
